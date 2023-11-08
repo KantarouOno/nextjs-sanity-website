@@ -44,6 +44,17 @@ export interface PagePayload {
   slug?: string
 }
 
+// 取得したアイテムの型
+export interface ItemPayload {
+  article?: PortableTextBlock[]
+  description?: string
+  title?: string
+  slug?: any
+  thumbnailImage?: Image
+  imagesGallery?: Image[]
+  category?: any
+}
+
 export interface ProjectPayload {
   client?: string
   coverImage?: Image

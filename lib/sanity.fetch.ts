@@ -3,8 +3,10 @@ import 'server-only'
 import type { QueryParams } from '@sanity/client'
 import { client } from 'lib/sanity.client'
 import {
+  getItemsQuery,
   homePageQuery,
   homePageTitleQuery,
+  itemBySlugQuery,
   pagePaths,
   pagesBySlugQuery,
   projectBySlugQuery,
@@ -14,6 +16,7 @@ import {
 import { draftMode } from 'next/headers'
 import type {
   HomePagePayload,
+  ItemPayload,
   PagePayload,
   ProjectPayload,
   SettingsPayload,
@@ -72,6 +75,24 @@ export function getSettings() {
 export function getPageBySlug(slug: string) {
   return sanityFetch<PagePayload | null>({
     query: pagesBySlugQuery,
+    params: { slug },
+    tags: [`page:${slug}`],
+  })
+}
+
+// 一覧を取得する
+// queryの箇所で絞り込みの条件が書かれている。
+export function getItems() {
+  return sanityFetch<ItemPayload[] | []>({
+    query: getItemsQuery,
+    tags: [`items`],
+  })
+}
+// 詳細を取得する
+// queryの箇所で絞り込みの条件が書かれている。
+export function getItemBySlug(slug: string) {
+  return sanityFetch<ItemPayload | null>({
+    query: itemBySlugQuery,
     params: { slug },
     tags: [`page:${slug}`],
   })
