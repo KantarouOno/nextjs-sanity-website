@@ -13,8 +13,12 @@ import Iframe, {
   IframeOptions,
 } from 'sanity-plugin-iframe-pane'
 import { previewUrl } from 'sanity-plugin-iframe-pane/preview-url'
+import { schemaTypes } from 'schemas'
+import collection from 'schemas/documents/collection'
 import item from 'schemas/documents/item'
 import page from 'schemas/documents/page'
+import product from 'schemas/documents/product'
+import productVariant from 'schemas/documents/productVariant'
 import project from 'schemas/documents/project'
 import duration from 'schemas/objects/duration'
 import milestone from 'schemas/objects/milestone'
@@ -65,14 +69,21 @@ export default defineConfig({
       // Singletons
       home,
       settings,
+      item,
       // Documents
       duration,
       page,
       project,
-      item,
       // Objects
       milestone,
       timeline,
+      // shopify
+      // (商品・ヴァリデーション)・(コレクション)ページの追加
+      product,
+      productVariant,
+      collection,
+      // shopifyComponent
+      ...schemaTypes,
     ],
   },
   plugins: [
